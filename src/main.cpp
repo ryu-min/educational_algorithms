@@ -1,6 +1,5 @@
 #include <iostream>
 #include <random>
-#include <algorithm>
 #include <vector>
 #include <chrono>
 #include <functional>
