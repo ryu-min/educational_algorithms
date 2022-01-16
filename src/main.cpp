@@ -5,6 +5,10 @@
 #include <functional>
 
 #include "sorts.h"
+#include "has_method.h"
+
+
+
 
 template <typename T>
 decltype(auto) generateRandomVec(unsigned size = 100, int min = 0, int max = 100) {
@@ -18,6 +22,7 @@ decltype(auto) generateRandomVec(unsigned size = 100, int min = 0, int max = 100
     generate(std::begin(vec), std::end(vec), gen);
     return vec;
 }
+
 
 class Timer {
 public:
@@ -80,8 +85,25 @@ long getAverageSortingTime(std::function<void(std::vector<T>)> sortingFunc,
     return averageTime;
 }
 
-int main() {
 
+struct test {
+	void method(int i) {
+		std::cout << i;
+	}
+};
+
+struct test2 {
+	void method(const std::string & s) {
+		std::cout << s;
+	}
+};
+
+
+int main() {
+	
+	std::cout << "has method in test " << has_method<test, void(std::string)>::value << std::endl;
+	std::cout << "has method in test " << has_method<test2, void(std::string)>::value << std::endl;
+	
     const int VECTOR_TEST_SIZE  = 100'000;
     const int REPEAT_COUNT      = 10;
     const Timer::TimerMode MODE = Timer::TimerMode::Milliseconds;
